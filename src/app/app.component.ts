@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiculosService } from './services/vehiculos.service';
+import { Vehiculo } from './models/vehiculo';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +8,25 @@ import { VehiculosService } from './services/vehiculos.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit{
-  title = 'parcial';
+  
+  public vehiculos:Vehiculo[]=[];
 
-  constructor()
+  constructor(public vehiculosService:VehiculosService)
   {
 
 
   }
 
   ngOnInit(): void {
+      this.obtenerVehiculos();
+  }
 
+  obtenerVehiculos()
+  {
+
+    this.vehiculosService.obtenerVehiculos().subscribe(p=>{
+      this.vehiculos= p
+    });
   }
 
 
