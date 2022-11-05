@@ -1,4 +1,37 @@
 
+
+
+
 <app-header></app-header>
-<app-tabla-vehiculos [vehiculos]="vehiculos" ></app-tabla-vehiculos>
+
+<div class="card " >
+  <div class="card-body">
+
+    <div class="card   animate__animated animate__bounceInDown" >
+      <div class="card-header">
+        Vehiculos
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+        <app-tabla-vehiculos [vehiculos]="vehiculos"  *ngIf="vehiculos.length>0"></app-tabla-vehiculos>
+      </div>
+      </div>
+    </div>
+    <br>
+    <div class="card animate__animated animate__bounceInUp animate__delay-1s" >
+
+      <div class="card-header">
+        Consolidado
+      </div>
+
+      <div class="card-body">
+        <app-lista-agrupamiento-marca  [vehiculos]="vehiculos" *ngIf="vehiculos.length>0"></app-lista-agrupamiento-marca>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
 <app-footer></app-footer>

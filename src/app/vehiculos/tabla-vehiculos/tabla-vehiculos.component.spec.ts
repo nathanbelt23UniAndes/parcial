@@ -41,7 +41,7 @@ describe('TablaVehiculosComponent', () => {
 
   });
 
-  it('should create', () => {
+  it('se debe crear  la tabla', () => {
     expect(component).toBeTruthy();
   });
   it('se dibujan '+(n+1)+' tr ', () => {
