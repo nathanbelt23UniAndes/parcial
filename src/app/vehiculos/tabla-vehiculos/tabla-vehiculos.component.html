@@ -1,0 +1,22 @@
+<hr>
+<table class="table table-hover " style="width:80% ;">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Marca</th>
+      <th>Linea</th>
+      <th>Modelo</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let  veh of vehiculos">
+
+        <td>{{veh.id}}</td>
+        <td>{{veh.marca}}</td>
+        <td>{{veh.linea}}</td>
+        <td>{{veh.modelo}}</td>
+    </tr>
+
+  </tbody>
+</table>

@@ -1,35 +1,87 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable, Subject } from 'rxjs';
+import { faker } from '@faker-js/faker';
+import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+
+import {  of } from 'rxjs';
+
+import { Vehiculo } from './models/vehiculo';
+import { VehiculosService } from './services/vehiculos.service';
+
+let httpClientSpy: jasmine.SpyObj<HttpClient>;
+let servicio: VehiculosService;
+
+
+
+let n=5;
+function  datos()
+{
+  let vehiculos: Vehiculo[]=[];
+
+  for(let i=0; i<n; i++)
+  {
+    let vehiculo= {}  as Vehiculo;
+    vehiculo.id= faker.datatype.number();
+    vehiculo.marca= faker.company.bs();
+    vehiculo.modelo= faker.datatype.number();
+    vehiculo.linea= faker.vehicle.model();
+    vehiculo.referencia= faker.vehicle.vin();
+    vehiculo.kilometraje=  faker.datatype.number();
+    vehiculo.imagen= faker.image.imageUrl();
+    vehiculos.push(vehiculo);
+  }
+return vehiculos;
+}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    servicio= new VehiculosService(httpClientSpy);
+    spyOn(servicio,'obtenerVehiculos' )
+     .and.callFake( () => {
+       return of( vehiculos );
+     });
+
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ],
       declarations: [
         AppComponent
       ],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      providers:[VehiculosService]
     }).compileComponents();
+
+    let vehiculos=datos();
+
   });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+
   });
 
-  it(`should have as title 'parcial'`, () => {
+
+
+
+  it('get data services vehiculos', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('parcial');
+    app.vehiculosService= servicio;
+    app.vehiculosService.obtenerVehiculos();
+    fixture.detectChanges();
+    expect(app.vehiculos.length).toBe(n);
   });
 
-  xit('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('span')?.textContent).toContain('parcial');
-  });
+
+
 });
