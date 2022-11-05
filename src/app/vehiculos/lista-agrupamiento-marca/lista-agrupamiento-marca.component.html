@@ -1,0 +1,21 @@
+<div style="width:50% ;">
+
+<ol class="list-group" >
+
+  <li  class="list-group-item active bg-dark" aria-current="true">
+    Resumen por marca
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between  list-group-item-action" *ngFor="let marcaAgrupada of marcasAgrupadas;let  i=index">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{i+1}}.-{{marcaAgrupada.marca}}</div>
+
+    </div>
+    <span>{{marcaAgrupada.total}}</span>
+  </li>
+
+</ol>
+
+</div>
+
+
