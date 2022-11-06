@@ -2,9 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable, Subject } from 'rxjs';
 import { faker } from '@faker-js/faker';
-import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import {  of } from 'rxjs';
