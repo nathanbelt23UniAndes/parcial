@@ -20,7 +20,7 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('se debe colocar el texto=> Contact us: +57 3102105253 - info@tusegundazo.com - @tusegundazo', () => {
+  it('se debe colocar el texto= Contact us: +57 3102105253 - info@tusegundazo.com - @tusegundazo', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;

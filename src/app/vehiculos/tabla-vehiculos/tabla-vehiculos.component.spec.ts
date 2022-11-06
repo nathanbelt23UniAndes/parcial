@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker';
 describe('TablaVehiculosComponent', () => {
   let component: TablaVehiculosComponent;
   let fixture: ComponentFixture<TablaVehiculosComponent>;
-  let n=5;
+  let n=3;
   function  datos()
   {
     let vehiculos: Vehiculo[]=[];
@@ -44,11 +44,9 @@ describe('TablaVehiculosComponent', () => {
   it('se debe crear  la tabla', () => {
     expect(component).toBeTruthy();
   });
-  it('se dibujan '+(n+1)+' tr ', () => {
-
+  it('se dibujan '+(n+1)+' tr ioncluida la del encabezado ', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('tr')?.length).toBe(n+1);
-
   });
 
 
